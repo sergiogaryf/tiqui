@@ -1,0 +1,1558 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tiqui — Maqueta Completa</title>
+<link href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════════════════════
+   TIQUI — Design System "Warm Depth"
+   ═══════════════════════════════════════════ */
+
+:root {
+  --base: #1A1A2E;
+  --surface: #25253D;
+  --surface-2: #2E2E4A;
+  --surface-3: #383858;
+  --mandarina: #FF6B35;
+  --mandarina-light: #FF8A5C;
+  --mandarina-dark: #E05A2A;
+  --lavanda: #7B68EE;
+  --lavanda-light: #9B8AFF;
+  --melocoton: #FFBE98;
+  --melocoton-light: #FFD4B8;
+  --texto: #F5F0EB;
+  --texto-dim: #9E9BB2;
+  --texto-muted: #6E6B82;
+  --success: #22C55E;
+  --error: #EF4444;
+  --warning: #F59E0B;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --font-heading: 'General Sans', 'Inter', system-ui, sans-serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--base);
+  color: var(--texto);
+  font-family: var(--font-body);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection { background: var(--lavanda); color: white; }
+
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--base); }
+::-webkit-scrollbar-thumb { background: var(--surface-3); border-radius: 3px; }
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+a { color: inherit; text-decoration: none; }
+
+img { display: block; max-width: 100%; }
+
+/* ═══ Utilities ═══ */
+.glass {
+  background: rgba(37,37,61,0.6);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255,255,255,0.06);
+}
+
+.gradient-mandarina { background: linear-gradient(135deg, var(--mandarina), var(--melocoton)); }
+.gradient-lavanda { background: linear-gradient(135deg, var(--lavanda), var(--lavanda-light)); }
+.gradient-warm { background: linear-gradient(135deg, var(--mandarina), var(--lavanda)); }
+
+.text-gradient {
+  background: linear-gradient(135deg, var(--mandarina), var(--melocoton));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 12px;
+  border-radius: 9999px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+.badge-mandarina { background: rgba(255,107,53,0.15); color: var(--mandarina-light); }
+.badge-lavanda { background: rgba(123,104,238,0.15); color: var(--lavanda-light); }
+.badge-success { background: rgba(34,197,94,0.15); color: #4ADE80; }
+.badge-error { background: rgba(239,68,68,0.15); color: #F87171; }
+.badge-warning { background: rgba(245,158,11,0.15); color: #FBBF24; }
+
+.btn-primary {
+  background: var(--mandarina);
+  color: white;
+  font-weight: 600;
+  padding: 12px 24px;
+  border-radius: var(--radius-md);
+  border: none;
+  cursor: pointer;
+  font-size: 15px;
+  font-family: var(--font-body);
+  transition: all 0.2s;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.btn-primary:hover {
+  background: var(--mandarina-light);
+  transform: translateY(-1px);
+  box-shadow: 0 8px 24px rgba(255,107,53,0.3);
+}
+
+.btn-secondary {
+  background: var(--surface-2);
+  color: var(--texto);
+  font-weight: 600;
+  padding: 12px 24px;
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(255,255,255,0.08);
+  cursor: pointer;
+  font-size: 15px;
+  font-family: var(--font-body);
+  transition: all 0.2s;
+}
+.btn-secondary:hover { background: var(--surface-3); }
+
+.btn-ghost {
+  background: transparent;
+  color: var(--texto-dim);
+  font-weight: 500;
+  padding: 8px 16px;
+  border-radius: var(--radius-md);
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: var(--font-body);
+}
+.btn-ghost:hover { color: var(--texto); background: rgba(255,255,255,0.05); }
+
+.card {
+  background: var(--surface);
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(255,255,255,0.06);
+  transition: all 0.25s;
+  overflow: hidden;
+}
+.card:hover {
+  border-color: rgba(255,255,255,0.12);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.3);
+}
+
+.input {
+  background: var(--surface);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: var(--radius-md);
+  padding: 12px 16px;
+  color: var(--texto);
+  font-size: 15px;
+  font-family: var(--font-body);
+  width: 100%;
+  transition: border-color 0.2s;
+  outline: none;
+}
+.input:focus {
+  border-color: var(--mandarina);
+  box-shadow: 0 0 0 3px rgba(255,107,53,0.15);
+}
+.input::placeholder { color: var(--texto-muted); }
+
+/* ═══ Screen Navigation ═══ */
+.screen-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background: rgba(26,26,46,0.95);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  padding: 10px 16px;
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+.screen-nav a {
+  padding: 6px 14px;
+  border-radius: 9999px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--texto-dim);
+  transition: all 0.2s;
+  flex-shrink: 0;
+}
+.screen-nav a:hover { color: var(--texto); background: var(--surface); }
+.screen-nav a.active { background: var(--mandarina); color: white; }
+
+.screen-divider {
+  padding: 80px 0 40px;
+  text-align: center;
+  border-top: 2px solid var(--surface-2);
+  margin-top: 60px;
+}
+.screen-divider h2 {
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--mandarina);
+  margin-bottom: 4px;
+}
+.screen-divider p { color: var(--texto-muted); font-size: 13px; }
+
+/* ═══ Navbar ═══ */
+.navbar {
+  position: sticky;
+  top: 44px;
+  z-index: 100;
+  padding: 0 24px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-heading);
+  font-size: 20px;
+  font-weight: 700;
+}
+.nav-logo-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+}
+.nav-links { display: flex; gap: 24px; }
+.nav-links a { font-size: 14px; color: var(--texto-dim); transition: color 0.2s; }
+.nav-links a:hover { color: var(--texto); }
+.nav-actions { display: flex; align-items: center; gap: 8px; }
+
+/* ═══ Hero ═══ */
+.hero {
+  position: relative;
+  min-height: 75vh;
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+}
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, #3d1e5c 0%, #1a1a2e 40%, #2e1a0a 100%);
+}
+.hero-bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, var(--base) 0%, transparent 60%),
+              linear-gradient(to right, rgba(26,26,46,0.6) 0%, transparent 100%);
+}
+.hero-particles {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+.hero-particles span {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  background: var(--mandarina);
+  border-radius: 50%;
+  opacity: 0.3;
+  animation: float 8s ease-in-out infinite;
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0) scale(1); opacity: 0.3; }
+  50% { transform: translateY(-40px) scale(1.5); opacity: 0.6; }
+}
+.hero-content {
+  position: relative;
+  z-index: 10;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px 64px;
+  width: 100%;
+  animation: slideUp 0.6s ease-out;
+}
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.hero h1 {
+  font-size: clamp(36px, 6vw, 64px);
+  max-width: 700px;
+  margin-bottom: 16px;
+}
+.hero-meta { display: flex; flex-wrap: wrap; gap: 16px; color: var(--texto-dim); margin-bottom: 12px; }
+.hero-meta span { display: flex; align-items: center; gap: 6px; }
+.hero-desc { color: var(--texto-dim); font-size: 18px; max-width: 500px; margin-bottom: 24px; }
+
+/* ═══ Bento Grid ═══ */
+.bento {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+.bento .card-large {
+  grid-column: span 2;
+  grid-row: span 2;
+}
+.event-img {
+  height: 180px;
+  background: var(--surface-2);
+  position: relative;
+  overflow: hidden;
+}
+.event-img.tall { height: 100%; min-height: 320px; }
+.event-img-gradient {
+  position: absolute;
+  inset: 0;
+  opacity: 0.25;
+}
+.event-info { padding: 16px; }
+.event-info h3 {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 16px;
+  margin-bottom: 8px;
+}
+.event-meta { display: flex; gap: 12px; color: var(--texto-dim); font-size: 13px; }
+.event-meta span { display: flex; align-items: center; gap: 4px; }
+
+.progress-bar {
+  height: 6px;
+  background: var(--surface-2);
+  border-radius: 3px;
+  overflow: hidden;
+  margin-top: 12px;
+}
+.progress-fill {
+  height: 100%;
+  border-radius: 3px;
+  transition: width 0.5s;
+}
+
+/* ═══ Category Pills ═══ */
+.pills {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+}
+.pill {
+  padding: 8px 16px;
+  border-radius: 9999px;
+  font-size: 14px;
+  font-weight: 500;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: all 0.2s;
+  border: none;
+  font-family: var(--font-body);
+}
+.pill-active { background: var(--mandarina); color: white; }
+.pill-inactive { background: var(--surface); color: var(--texto-dim); }
+.pill-inactive:hover { background: var(--surface-2); color: var(--texto); }
+
+/* ═══ Sections ═══ */
+.section { max-width: 1200px; margin: 0 auto; padding: 48px 24px; }
+.section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+.section-header h2 { font-size: 24px; }
+.section-header a { color: var(--mandarina); font-size: 14px; display: flex; align-items: center; gap: 4px; }
+
+/* ═══ Event Detail ═══ */
+.detail-banner {
+  height: 400px;
+  position: relative;
+  overflow: hidden;
+}
+.detail-banner-bg {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, #2e1a4a, #1a1a2e, #3d2a0a);
+}
+.detail-banner::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, var(--base), transparent);
+}
+.detail-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 32px;
+  margin-top: -80px;
+  position: relative;
+  z-index: 10;
+}
+
+/* ═══ Checkout Sidebar ═══ */
+.checkout-card {
+  padding: 24px;
+  position: sticky;
+  top: 120px;
+}
+.ticket-type {
+  padding: 16px;
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(255,255,255,0.06);
+  margin-bottom: 12px;
+  transition: all 0.2s;
+}
+.ticket-type.selected { border-color: rgba(255,107,53,0.3); background: var(--surface); }
+.ticket-type-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.qty-controls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.qty-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-sm);
+  background: var(--surface-2);
+  border: none;
+  color: var(--texto);
+  font-size: 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+}
+.qty-btn:hover { background: var(--surface-3); }
+.qty-num { font-weight: 700; width: 24px; text-align: center; }
+
+/* ═══ Auth Forms ═══ */
+.auth-page {
+  min-height: 70vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 24px;
+}
+.auth-form {
+  width: 100%;
+  max-width: 400px;
+}
+.form-group { margin-bottom: 16px; }
+.form-group label {
+  display: block;
+  font-size: 14px;
+  color: var(--texto-dim);
+  margin-bottom: 4px;
+}
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+/* ═══ Panel ═══ */
+.panel-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+.stat-card {
+  padding: 20px;
+  background: var(--surface);
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(255,255,255,0.06);
+}
+.stat-card .icon { font-size: 20px; margin-bottom: 8px; }
+.stat-card .value { font-size: 28px; font-weight: 700; }
+.stat-card .label { font-size: 14px; color: var(--texto-dim); }
+.stat-card .sub { font-size: 12px; color: var(--texto-muted); }
+
+.event-list-item {
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+  transition: background 0.2s;
+  cursor: pointer;
+}
+.event-list-item:hover { background: rgba(255,255,255,0.02); }
+
+/* ═══ Scanner ═══ */
+.scanner-viewport {
+  width: 100%;
+  max-width: 350px;
+  aspect-ratio: 1;
+  margin: 0 auto;
+  border-radius: var(--radius-xl);
+  border: 2px solid var(--lavanda);
+  background: var(--surface);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+.scanner-line {
+  position: absolute;
+  left: 10%;
+  right: 10%;
+  height: 2px;
+  background: var(--mandarina);
+  box-shadow: 0 0 12px var(--mandarina);
+  animation: scanLine 2s ease-in-out infinite;
+}
+@keyframes scanLine {
+  0% { top: 15%; }
+  50% { top: 85%; }
+  100% { top: 15%; }
+}
+.scanner-corners { position: absolute; inset: 8%; }
+.scanner-corners::before, .scanner-corners::after {
+  content: '';
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  border-color: var(--mandarina);
+  border-style: solid;
+  border-width: 0;
+}
+.scanner-corners::before {
+  top: 0; left: 0;
+  border-top-width: 3px;
+  border-left-width: 3px;
+  border-radius: 4px 0 0 0;
+}
+.scanner-corners::after {
+  top: 0; right: 0;
+  border-top-width: 3px;
+  border-right-width: 3px;
+  border-radius: 0 4px 0 0;
+}
+
+.scan-result {
+  padding: 32px;
+  border-radius: var(--radius-xl);
+  text-align: center;
+}
+.scan-result.valid { background: rgba(34,197,94,0.1); border: 1px solid rgba(34,197,94,0.3); }
+.scan-result.used { background: rgba(239,68,68,0.1); border: 1px solid rgba(239,68,68,0.3); }
+
+/* ═══ QR Display ═══ */
+.qr-card {
+  padding: 32px;
+  text-align: center;
+  border-radius: var(--radius-xl);
+  background: var(--surface);
+  border: 1px solid rgba(255,255,255,0.06);
+}
+.qr-placeholder {
+  width: 200px;
+  height: 200px;
+  margin: 0 auto 16px;
+  border-radius: var(--radius-md);
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+.qr-grid {
+  width: 160px;
+  height: 160px;
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  grid-template-rows: repeat(8, 1fr);
+  gap: 2px;
+}
+.qr-grid span {
+  border-radius: 2px;
+}
+.qr-dark { background: var(--base); }
+.qr-light { background: transparent; }
+
+/* ═══ CTA Section ═══ */
+.cta {
+  text-align: center;
+  padding: 80px 24px;
+  max-width: 700px;
+  margin: 0 auto;
+}
+.cta h2 { font-size: clamp(28px, 4vw, 42px); margin-bottom: 16px; }
+.cta p { color: var(--texto-dim); font-size: 18px; margin-bottom: 32px; }
+
+/* ═══ Footer ═══ */
+.footer {
+  border-top: 1px solid rgba(255,255,255,0.05);
+  padding: 48px 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr 1fr;
+  gap: 32px;
+  margin-bottom: 40px;
+}
+.footer h4 { font-size: 14px; font-weight: 600; margin-bottom: 12px; }
+.footer a { display: block; font-size: 14px; color: var(--texto-dim); padding: 4px 0; transition: color 0.2s; }
+.footer a:hover { color: var(--texto); }
+.footer-bottom { text-align: center; padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.05); }
+.footer-bottom p { font-size: 12px; color: var(--texto-muted); }
+
+/* ═══ Admin Table ═══ */
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.admin-table th {
+  text-align: left;
+  padding: 12px 16px;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--texto-muted);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.admin-table td {
+  padding: 12px 16px;
+  font-size: 14px;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+}
+.admin-table tr:hover td { background: rgba(255,255,255,0.02); }
+
+.action-btn {
+  width: 28px;
+  height: 28px;
+  border-radius: var(--radius-sm);
+  border: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  margin-right: 4px;
+  transition: all 0.2s;
+}
+.action-approve { background: rgba(34,197,94,0.1); color: #4ADE80; }
+.action-approve:hover { background: rgba(34,197,94,0.2); }
+.action-reject { background: rgba(239,68,68,0.1); color: #F87171; }
+.action-reject:hover { background: rgba(239,68,68,0.2); }
+
+/* ═══ Responsive ═══ */
+@media (max-width: 768px) {
+  .bento { grid-template-columns: 1fr; }
+  .bento .card-large { grid-column: span 1; grid-row: span 1; }
+  .detail-grid { grid-template-columns: 1fr; }
+  .panel-grid { grid-template-columns: repeat(2, 1fr); }
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+  .nav-links { display: none; }
+  .form-row { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════
+     SCREEN NAVIGATION BAR
+     ═══════════════════════════════════════════ -->
+<nav class="screen-nav">
+  <a href="#home" class="active">Home</a>
+  <a href="#eventos">Eventos</a>
+  <a href="#detalle">Detalle</a>
+  <a href="#login">Login</a>
+  <a href="#registro">Registro</a>
+  <a href="#panel">Panel</a>
+  <a href="#nuevo-evento">Nuevo Evento</a>
+  <a href="#stats">Stats</a>
+  <a href="#scanner">Scanner</a>
+  <a href="#confirmacion">Confirmacion</a>
+  <a href="#mis-tickets">Mis Tickets</a>
+  <a href="#admin">Admin</a>
+  <a href="#organizadores">Organizadores</a>
+</nav>
+
+
+<!-- ═══════════════════════════════════════════
+     1. HOME
+     ═══════════════════════════════════════════ -->
+<section id="home">
+
+  <!-- Navbar -->
+  <nav class="navbar glass">
+    <div class="nav-logo">
+      <div class="nav-logo-icon gradient-mandarina">T</div>
+      <span>TI<span style="color:var(--mandarina)">QUI</span></span>
+    </div>
+    <div class="nav-links">
+      <a href="#">Eventos</a>
+      <a href="#">Fiestas</a>
+      <a href="#">Musica</a>
+      <a href="#">Talleres</a>
+    </div>
+    <div class="nav-actions">
+      <button class="btn-ghost" style="font-size:14px">&#128269;</button>
+      <button class="btn-ghost" style="font-size:14px">Iniciar sesion</button>
+      <button class="btn-primary" style="padding:8px 16px;font-size:14px">Organizar evento</button>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <div class="hero">
+    <div class="hero-bg">
+      <div class="hero-particles">
+        <span style="left:10%;top:20%;animation-delay:0s"></span>
+        <span style="left:25%;top:50%;animation-delay:1s"></span>
+        <span style="left:45%;top:30%;animation-delay:2s"></span>
+        <span style="left:65%;top:60%;animation-delay:0.5s"></span>
+        <span style="left:80%;top:25%;animation-delay:1.5s"></span>
+        <span style="left:90%;top:45%;animation-delay:3s"></span>
+        <span style="left:15%;top:70%;animation-delay:2.5s"></span>
+        <span style="left:55%;top:80%;animation-delay:1.2s"></span>
+      </div>
+    </div>
+    <div class="hero-content">
+      <span class="badge badge-mandarina" style="margin-bottom:16px">Evento destacado</span>
+      <h1>Neon Night Festival</h1>
+      <div class="hero-meta">
+        <span>&#128197; Mie 15 Abr</span>
+        <span>&#128205; Parque Bicentenario, Vina del Mar</span>
+      </div>
+      <p class="hero-desc">La fiesta mas esperada del otono. Musica electronica, luces y buena energia.</p>
+      <button class="btn-primary" style="font-size:18px;padding:16px 32px">
+        Desde $12.000 &#8594;
+      </button>
+    </div>
+  </div>
+
+  <!-- Discover Section -->
+  <div class="section">
+    <div class="section-header">
+      <h2>Descubre eventos</h2>
+      <a href="#">Ver todos &#8594;</a>
+    </div>
+
+    <!-- Category Pills -->
+    <div class="pills" style="margin-bottom:24px">
+      <button class="pill pill-active">&#128293; Todos</button>
+      <button class="pill pill-inactive">&#127925; Musica</button>
+      <button class="pill pill-inactive">&#127881; Fiestas</button>
+      <button class="pill pill-inactive">&#9917; Deportes</button>
+      <button class="pill pill-inactive">&#127917; Cultura</button>
+      <button class="pill pill-inactive">&#127863; Gastro</button>
+      <button class="pill pill-inactive">&#127912; Talleres</button>
+      <button class="pill pill-inactive">&#129495; Bienestar</button>
+      <button class="pill pill-inactive">&#128187; Tech</button>
+    </div>
+
+    <!-- Bento Grid -->
+    <div class="bento">
+      <!-- Large Card -->
+      <div class="card card-large">
+        <div class="event-img tall">
+          <div class="event-img-gradient" style="background:linear-gradient(135deg,#c94a2c,#7b2dff)"></div>
+          <div style="position:absolute;top:12px;left:12px;display:flex;gap:8px;z-index:1">
+            <span class="badge glass" style="font-size:11px">Fiestas</span>
+            <span class="badge badge-warning" style="font-size:11px">Ultimas</span>
+          </div>
+          <div style="position:absolute;bottom:12px;right:12px;z-index:1">
+            <span class="badge glass" style="font-weight:700;font-size:14px">Desde $8.000</span>
+          </div>
+        </div>
+        <div class="event-info">
+          <h3 style="font-size:20px">Mulata Social Dance</h3>
+          <div class="event-meta">
+            <span>&#128197; Sab 5 Abr</span>
+            <span>&#128205; Valparaiso</span>
+          </div>
+          <div class="progress-bar">
+            <div class="progress-fill" style="width:75%;background:var(--warning)"></div>
+          </div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;color:var(--texto-muted);margin-top:4px">
+            <span>150 vendidas</span><span>50 disponibles</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Small Cards -->
+      <div class="card">
+        <div class="event-img"><div class="event-img-gradient" style="background:linear-gradient(135deg,#1a5c7a,#7b68ee)"></div>
+          <div style="position:absolute;top:12px;left:12px;z-index:1"><span class="badge glass" style="font-size:11px">Musica</span></div>
+          <div style="position:absolute;bottom:12px;right:12px;z-index:1"><span class="badge glass" style="font-weight:700">$5.000</span></div>
+        </div>
+        <div class="event-info">
+          <h3>Sunset Jazz Session</h3>
+          <div class="event-meta"><span>&#128197; Mar 8 Abr</span><span>&#128205; Renaca</span></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="event-img"><div class="event-img-gradient" style="background:linear-gradient(135deg,#22c55e,#3d8b3d)"></div>
+          <div style="position:absolute;top:12px;left:12px;z-index:1"><span class="badge glass" style="font-size:11px">Bienestar</span></div>
+          <div style="position:absolute;bottom:12px;right:12px;z-index:1"><span class="badge badge-success" style="font-weight:700">Gratis</span></div>
+        </div>
+        <div class="event-info">
+          <h3>Yoga al Amanecer</h3>
+          <div class="event-meta"><span>&#128197; Jue 10 Abr</span><span>&#128205; Playa Ancha</span></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="event-img"><div class="event-img-gradient" style="background:linear-gradient(135deg,#6366f1,#a855f7)"></div>
+          <div style="position:absolute;top:12px;left:12px;z-index:1"><span class="badge glass" style="font-size:11px">Tech</span></div>
+          <div style="position:absolute;bottom:12px;right:12px;z-index:1"><span class="badge badge-success" style="font-weight:700">Gratis</span></div>
+        </div>
+        <div class="event-info">
+          <h3>Tech Meetup VLP</h3>
+          <div class="event-meta"><span>&#128197; Dom 12 Abr</span><span>&#128205; Wework Valparaiso</span></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="event-img"><div class="event-img-gradient" style="background:linear-gradient(135deg,#ef4444,#f97316)"></div>
+          <div style="position:absolute;top:12px;left:12px;z-index:1"><span class="badge glass" style="font-size:11px">Cultura</span></div>
+          <div style="position:absolute;bottom:12px;right:12px;z-index:1"><span class="badge glass" style="font-weight:700">$6.000</span></div>
+          <div style="position:absolute;top:12px;right:12px;z-index:1"><span class="badge badge-error" style="font-size:11px">Agotado</span></div>
+        </div>
+        <div class="event-info">
+          <h3>Comedy Night</h3>
+          <div class="event-meta"><span>&#128197; Mar 14 Abr</span><span>&#128205; Bar El Huevo</span></div>
+          <div class="progress-bar"><div class="progress-fill" style="width:97%;background:var(--error)"></div></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="event-img"><div class="event-img-gradient" style="background:linear-gradient(135deg,#f59e0b,#84cc16)"></div>
+          <div style="position:absolute;top:12px;left:12px;z-index:1"><span class="badge glass" style="font-size:11px">Gastro</span></div>
+          <div style="position:absolute;bottom:12px;right:12px;z-index:1"><span class="badge glass" style="font-weight:700">$3.000</span></div>
+        </div>
+        <div class="event-info">
+          <h3>Street Food Fest</h3>
+          <div class="event-meta"><span>&#128197; Sab 18 Abr</span><span>&#128205; Cerro Alegre</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta">
+    <h2>Organiza tu proximo <span class="text-gradient">evento</span></h2>
+    <p>Crea, vende y gestiona entradas en minutos. Scanner QR, estadisticas en vivo y mas.</p>
+    <button class="btn-primary" style="font-size:18px;padding:16px 32px">
+      Empieza gratis &#8594;
+    </button>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-grid">
+      <div>
+        <div class="nav-logo" style="margin-bottom:12px">
+          <div class="nav-logo-icon gradient-mandarina" style="font-size:12px">T</div>
+          <span style="font-size:18px">TI<span style="color:var(--mandarina)">QUI</span></span>
+        </div>
+        <p style="font-size:14px;color:var(--texto-dim)">Tu entrada al momento. Descubre eventos cerca de ti.</p>
+      </div>
+      <div>
+        <h4>Explorar</h4>
+        <a href="#">Todos los eventos</a>
+        <a href="#">Musica</a>
+        <a href="#">Fiestas</a>
+        <a href="#">Talleres</a>
+      </div>
+      <div>
+        <h4>Organizadores</h4>
+        <a href="#">Crear cuenta</a>
+        <a href="#">Iniciar sesion</a>
+        <a href="#">Mi panel</a>
+      </div>
+      <div>
+        <h4>Legal</h4>
+        <a href="#">Terminos de uso</a>
+        <a href="#">Privacidad</a>
+        <a href="#">Politica de compra</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Tiqui. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+</section>
+
+
+<!-- ═══════════════════════════════════════════
+     2. CATALOGO EVENTOS
+     ═══════════════════════════════════════════ -->
+<div class="screen-divider" id="eventos"><h2>Pantalla 2</h2><p>/eventos — Catalogo con filtros</p></div>
+
+<div class="section">
+  <h1 style="font-size:32px;margin-bottom:24px">Eventos</h1>
+
+  <div class="pills" style="margin-bottom:24px">
+    <button class="pill pill-active">&#128293; Todos</button>
+    <button class="pill pill-inactive">&#127925; Musica</button>
+    <button class="pill pill-inactive">&#127881; Fiestas</button>
+    <button class="pill pill-inactive">&#9917; Deportes</button>
+    <button class="pill pill-inactive">&#127917; Cultura</button>
+    <button class="pill pill-inactive">&#127863; Gastro</button>
+  </div>
+
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px">
+    <!-- 6 event cards in grid -->
+    <div class="card">
+      <div class="event-img"><div class="event-img-gradient" style="background:linear-gradient(135deg,#c94a2c,#7b2dff)"></div></div>
+      <div class="event-info"><h3>Mulata Social Dance</h3><div class="event-meta"><span>&#128197; Sab 5 Abr</span><span>&#128205; Valparaiso</span></div><p style="color:var(--mandarina);font-weight:700;margin-top:8px">$8.000</p></div>
+    </div>
+    <div class="card">
+      <div class="event-img"><div class="event-img-gradient" style="background:linear-gradient(135deg,#1a5c7a,#7b68ee)"></div></div>
+      <div class="event-info"><h3>Sunset Jazz Session</h3><div class="event-meta"><span>&#128197; Mar 8 Abr</span><span>&#128205; Renaca</span></div><p style="color:var(--mandarina);font-weight:700;margin-top:8px">$5.000</p></div>
+    </div>
+    <div class="card">
+      <div class="event-img"><div class="event-img-gradient" style="background:linear-gradient(135deg,#22c55e,#3d8b3d)"></div></div>
+      <div class="event-info"><h3>Yoga al Amanecer</h3><div class="event-meta"><span>&#128197; Jue 10 Abr</span><span>&#128205; Playa Ancha</span></div><p style="color:#4ADE80;font-weight:700;margin-top:8px">Gratis</p></div>
+    </div>
+    <div class="card">
+      <div class="event-img"><div class="event-img-gradient" style="background:linear-gradient(135deg,#6366f1,#a855f7)"></div></div>
+      <div class="event-info"><h3>Tech Meetup VLP</h3><div class="event-meta"><span>&#128197; Dom 12 Abr</span><span>&#128205; Wework</span></div><p style="color:#4ADE80;font-weight:700;margin-top:8px">Gratis</p></div>
+    </div>
+    <div class="card">
+      <div class="event-img"><div class="event-img-gradient" style="background:linear-gradient(135deg,#ef4444,#f97316)"></div></div>
+      <div class="event-info"><h3>Comedy Night</h3><div class="event-meta"><span>&#128197; Mar 14 Abr</span><span>&#128205; Bar El Huevo</span></div><p style="color:var(--mandarina);font-weight:700;margin-top:8px">$6.000</p></div>
+    </div>
+    <div class="card">
+      <div class="event-img"><div class="event-img-gradient" style="background:linear-gradient(135deg,#f59e0b,#84cc16)"></div></div>
+      <div class="event-info"><h3>Street Food Fest</h3><div class="event-meta"><span>&#128197; Sab 18 Abr</span><span>&#128205; Cerro Alegre</span></div><p style="color:var(--mandarina);font-weight:700;margin-top:8px">$3.000</p></div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════
+     3. DETALLE EVENTO + CHECKOUT
+     ═══════════════════════════════════════════ -->
+<div class="screen-divider" id="detalle"><h2>Pantalla 3</h2><p>/evento/[slug] — Detalle + Checkout</p></div>
+
+<div class="detail-banner">
+  <div class="detail-banner-bg"></div>
+</div>
+
+<div class="section" style="padding-top:0">
+  <div class="detail-grid">
+    <!-- Left: Info -->
+    <div>
+      <span class="badge badge-mandarina" style="margin-bottom:16px">Fiestas</span>
+      <h1 style="font-size:clamp(28px,5vw,48px);margin-bottom:16px">Mulata Social Dance</h1>
+
+      <div style="display:flex;flex-wrap:wrap;gap:16px;color:var(--texto-dim);margin-bottom:24px">
+        <span>&#128197; Sab 5 Abr 2026</span>
+        <span>&#128336; 21:00 - 02:00</span>
+        <span>&#128205; Club Valparaiso</span>
+        <span>&#128101; 200 personas</span>
+      </div>
+
+      <a href="#" style="color:var(--lavanda);font-size:14px;margin-bottom:24px;display:block">Ver en Google Maps &#8599;</a>
+
+      <div class="card" style="padding:24px;margin-bottom:16px">
+        <h3 style="margin-bottom:12px">Acerca del evento</h3>
+        <p style="color:var(--texto-dim);line-height:1.8">
+          Una noche de baile latino con los mejores DJs de la zona. Salsa, bachata, cumbia y mas.
+          Incluye clase de baile para principiantes a las 21:00. Show de salsa casino a medianoche.
+          <br><br>
+          Dress code: elegante casual. No se permite zapatillas deportivas.
+          <br><br>
+          Organizador: Mulata Producciones
+        </p>
+      </div>
+
+      <p style="color:var(--warning);font-size:14px">&#9888; Edad minima: 18 anos</p>
+    </div>
+
+    <!-- Right: Checkout -->
+    <div>
+      <div class="card checkout-card">
+        <h3 style="margin-bottom:16px">Entradas</h3>
+
+        <!-- Ticket types -->
+        <div class="ticket-type selected">
+          <div class="ticket-type-row">
+            <div>
+              <h4 style="font-size:15px;font-weight:600">General</h4>
+              <p style="color:var(--mandarina);font-weight:700;margin-top:4px">$8.000</p>
+            </div>
+            <div class="qty-controls">
+              <button class="qty-btn">-</button>
+              <span class="qty-num">2</span>
+              <button class="qty-btn">+</button>
+            </div>
+          </div>
+          <p style="color:var(--warning);font-size:12px;margin-top:8px">Quedan 8 disponibles</p>
+        </div>
+
+        <div class="ticket-type">
+          <div class="ticket-type-row">
+            <div>
+              <h4 style="font-size:15px;font-weight:600">VIP</h4>
+              <p style="font-size:13px;color:var(--texto-dim)">Incluye mesa + botella</p>
+              <p style="color:var(--mandarina);font-weight:700;margin-top:4px">$25.000</p>
+            </div>
+            <div class="qty-controls">
+              <button class="qty-btn">-</button>
+              <span class="qty-num">0</span>
+              <button class="qty-btn">+</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Discount code -->
+        <div style="display:flex;gap:8px;margin:16px 0">
+          <div style="position:relative;flex:1">
+            <span style="position:absolute;left:12px;top:50%;transform:translateY(-50%);color:var(--texto-muted);font-size:14px">&#127991;</span>
+            <input class="input" placeholder="Codigo de descuento" style="padding-left:36px;font-size:14px">
+          </div>
+          <button class="btn-secondary" style="padding:8px 16px;font-size:14px">Aplicar</button>
+        </div>
+
+        <!-- Total -->
+        <div style="display:flex;justify-content:space-between;font-size:18px;font-weight:700;padding:16px 0;border-top:1px solid rgba(255,255,255,0.06)">
+          <span>Total</span>
+          <span>$16.000</span>
+        </div>
+
+        <button class="btn-primary" style="width:100%;justify-content:center;font-size:16px;padding:14px">
+          Continuar al pago &#8594;
+        </button>
+
+        <p style="text-align:center;font-size:13px;color:var(--texto-muted);margin-top:8px">2 entradas seleccionadas</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════
+     4. LOGIN
+     ═══════════════════════════════════════════ -->
+<div class="screen-divider" id="login"><h2>Pantalla 4</h2><p>/login — Iniciar sesion</p></div>
+
+<div class="auth-page">
+  <div class="auth-form">
+    <div style="text-align:center;margin-bottom:32px">
+      <h1 style="font-size:28px">Iniciar sesion</h1>
+      <p style="color:var(--texto-dim);margin-top:8px">Accede a tu panel de organizador</p>
+    </div>
+
+    <div class="form-group">
+      <label>Email</label>
+      <input class="input" type="email" placeholder="tu@email.com">
+    </div>
+
+    <div class="form-group">
+      <label>Contrasena</label>
+      <div style="position:relative">
+        <input class="input" type="password" placeholder="********">
+        <span style="position:absolute;right:12px;top:50%;transform:translateY(-50%);color:var(--texto-muted);cursor:pointer;font-size:14px">&#128065;</span>
+      </div>
+    </div>
+
+    <div style="text-align:right;margin-bottom:16px">
+      <a href="#" style="color:var(--mandarina);font-size:14px">Olvidaste tu contrasena?</a>
+    </div>
+
+    <button class="btn-primary" style="width:100%;justify-content:center;padding:14px">Iniciar sesion</button>
+
+    <p style="text-align:center;color:var(--texto-dim);font-size:14px;margin-top:24px">
+      No tienes cuenta? <a href="#" style="color:var(--mandarina)">Registrate como organizador</a>
+    </p>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════
+     5. REGISTRO
+     ═══════════════════════════════════════════ -->
+<div class="screen-divider" id="registro"><h2>Pantalla 5</h2><p>/registro — Crear cuenta organizador</p></div>
+
+<div class="auth-page">
+  <div class="auth-form">
+    <div style="text-align:center;margin-bottom:32px">
+      <h1 style="font-size:28px">Crear cuenta</h1>
+      <p style="color:var(--texto-dim);margin-top:8px">Registrate como organizador de eventos</p>
+    </div>
+
+    <div class="form-row" style="margin-bottom:16px">
+      <div class="form-group"><label>Nombre</label><input class="input" placeholder="Juan"></div>
+      <div class="form-group"><label>Apellido</label><input class="input" placeholder="Perez"></div>
+    </div>
+    <div class="form-group"><label>Email</label><input class="input" type="email" placeholder="tu@email.com"></div>
+    <div class="form-group"><label>Telefono (opcional)</label><input class="input" type="tel" placeholder="+56 9 1234 5678"></div>
+    <div class="form-group">
+      <label>Contrasena</label>
+      <input class="input" type="password" placeholder="********">
+      <p style="font-size:12px;color:var(--texto-muted);margin-top:4px">Minimo 8 caracteres, 1 mayuscula y 1 numero</p>
+    </div>
+
+    <button class="btn-primary" style="width:100%;justify-content:center;padding:14px;margin-top:8px">Crear cuenta</button>
+
+    <p style="text-align:center;color:var(--texto-dim);font-size:14px;margin-top:24px">
+      Ya tienes cuenta? <a href="#" style="color:var(--mandarina)">Inicia sesion</a>
+    </p>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════
+     6. PANEL ORGANIZADOR
+     ═══════════════════════════════════════════ -->
+<div class="screen-divider" id="panel"><h2>Pantalla 6</h2><p>/panel — Dashboard organizador</p></div>
+
+<div class="section">
+  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:32px">
+    <h1 style="font-size:32px">Mi Panel</h1>
+    <button class="btn-primary">+ Crear evento</button>
+  </div>
+
+  <!-- Quick actions -->
+  <div class="panel-grid" style="margin-bottom:32px">
+    <div class="card" style="padding:20px;text-align:center;cursor:pointer">
+      <div style="font-size:24px;margin-bottom:8px;color:var(--mandarina)">+</div>
+      <span style="font-size:14px">Nuevo evento</span>
+    </div>
+    <div class="card" style="padding:20px;text-align:center;cursor:pointer">
+      <div style="font-size:24px;margin-bottom:8px;color:var(--lavanda)">&#9633;</div>
+      <span style="font-size:14px">Scanner QR</span>
+    </div>
+    <div class="card" style="padding:20px;text-align:center;cursor:pointer">
+      <div style="font-size:24px;margin-bottom:8px;color:var(--melocoton)">&#127915;</div>
+      <span style="font-size:14px">Mis eventos</span>
+    </div>
+    <div class="card" style="padding:20px;text-align:center;cursor:pointer">
+      <div style="font-size:24px;margin-bottom:8px;color:var(--success)">&#128200;</div>
+      <span style="font-size:14px">Estadisticas</span>
+    </div>
+  </div>
+
+  <!-- Event list -->
+  <h2 style="font-size:18px;margin-bottom:16px">Mis eventos</h2>
+  <div class="card">
+    <div class="event-list-item">
+      <div><h4 style="font-size:15px;font-weight:600">Mulata Social Dance</h4><p style="font-size:13px;color:var(--texto-dim)">5 Abr 2026 — 150/200 vendidas — $1.200.000</p></div>
+      <span class="badge badge-success">publicado</span>
+    </div>
+    <div class="event-list-item">
+      <div><h4 style="font-size:15px;font-weight:600">Cumbia Fest Renaca</h4><p style="font-size:13px;color:var(--texto-dim)">20 Abr 2026 — 30/300 vendidas — $150.000</p></div>
+      <span class="badge badge-success">publicado</span>
+    </div>
+    <div class="event-list-item">
+      <div><h4 style="font-size:15px;font-weight:600">Clase Abierta Salsa</h4><p style="font-size:13px;color:var(--texto-dim)">12 Abr 2026 — Pendiente de aprobacion</p></div>
+      <span class="badge badge-warning">borrador</span>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════
+     7. NUEVO EVENTO
+     ═══════════════════════════════════════════ -->
+<div class="screen-divider" id="nuevo-evento"><h2>Pantalla 7</h2><p>/panel/nuevo — Crear evento</p></div>
+
+<div class="section" style="max-width:800px">
+  <h1 style="font-size:32px;margin-bottom:32px">Crear evento</h1>
+
+  <!-- Basic info card -->
+  <div class="card" style="padding:24px;margin-bottom:16px">
+    <h3 style="margin-bottom:16px">Informacion basica</h3>
+    <div class="form-group"><label>Nombre del evento</label><input class="input" value="Cumbia Fest Renaca"></div>
+    <div class="form-group"><label>Descripcion</label><textarea class="input" style="min-height:100px;resize:vertical">La mejor cumbia de la region en un solo lugar. 3 bandas en vivo, food trucks y mucha fiesta.</textarea></div>
+    <div class="form-group">
+      <label>Categoria</label>
+      <select class="input" style="appearance:auto"><option>Fiestas</option><option>Musica</option><option>Talleres</option></select>
+    </div>
+    <div class="form-group"><label>URL de imagen (opcional)</label><input class="input" placeholder="https://..."></div>
+  </div>
+
+  <!-- Date & location -->
+  <div class="card" style="padding:24px;margin-bottom:16px">
+    <h3 style="margin-bottom:16px">Fecha y lugar</h3>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:16px">
+      <div class="form-group"><label>Fecha</label><input class="input" type="date" value="2026-04-20"></div>
+      <div class="form-group"><label>Hora inicio</label><input class="input" type="time" value="21:00"></div>
+      <div class="form-group"><label>Hora fin</label><input class="input" type="time" value="03:00"></div>
+    </div>
+    <div class="form-group"><label>Lugar</label><input class="input" value="Playa Renaca"></div>
+    <div class="form-group"><label>Direccion</label><input class="input" value="Av. Borgoño 14500, Renaca"></div>
+  </div>
+
+  <!-- Ticket types -->
+  <div class="card" style="padding:24px;margin-bottom:24px">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px">
+      <h3>Tipos de entrada</h3>
+      <button class="btn-ghost" style="font-size:14px">+ Agregar</button>
+    </div>
+
+    <div style="padding:16px;border-radius:var(--radius-md);background:var(--base);border:1px solid rgba(255,255,255,0.06);margin-bottom:12px">
+      <div style="display:flex;justify-content:space-between;margin-bottom:8px"><span style="font-size:13px;color:var(--texto-dim)">Tipo 1</span></div>
+      <div style="display:grid;grid-template-columns:2fr 1fr 1fr;gap:12px">
+        <input class="input" value="General" style="font-size:14px">
+        <input class="input" value="5000" style="font-size:14px" placeholder="Precio">
+        <input class="input" value="200" style="font-size:14px" placeholder="Stock">
+      </div>
+    </div>
+
+    <div style="padding:16px;border-radius:var(--radius-md);background:var(--base);border:1px solid rgba(255,255,255,0.06)">
+      <div style="display:flex;justify-content:space-between;margin-bottom:8px"><span style="font-size:13px;color:var(--texto-dim)">Tipo 2</span><span style="color:var(--error);cursor:pointer;font-size:14px">&#128465;</span></div>
+      <div style="display:grid;grid-template-columns:2fr 1fr 1fr;gap:12px">
+        <input class="input" value="VIP" style="font-size:14px">
+        <input class="input" value="15000" style="font-size:14px">
+        <input class="input" value="50" style="font-size:14px">
+      </div>
+    </div>
+  </div>
+
+  <button class="btn-primary" style="width:100%;justify-content:center;font-size:16px;padding:16px">Crear evento</button>
+</div>
+
+
+<!-- ═══════════════════════════════════════════
+     8. ESTADISTICAS
+     ═══════════════════════════════════════════ -->
+<div class="screen-divider" id="stats"><h2>Pantalla 8</h2><p>/panel/eventos/[id]/stats — Estadisticas</p></div>
+
+<div class="section">
+  <h1 style="font-size:32px;margin-bottom:8px">Mulata Social Dance</h1>
+  <p style="color:var(--texto-dim);margin-bottom:32px">Sab 5 Abr 2026 — Club Valparaiso</p>
+
+  <!-- Stats -->
+  <div class="panel-grid" style="margin-bottom:32px">
+    <div class="stat-card">
+      <div class="icon" style="color:var(--mandarina)">&#127915;</div>
+      <div class="value">150</div>
+      <div class="label">Vendidas</div>
+      <div class="sub">de 200 (75%)</div>
+      <div class="progress-bar" style="margin-top:8px"><div class="progress-fill" style="width:75%;background:var(--mandarina)"></div></div>
+    </div>
+    <div class="stat-card">
+      <div class="icon" style="color:var(--success)">$</div>
+      <div class="value">$1.200.000</div>
+      <div class="label">Ingresos brutos</div>
+      <div class="sub">Comision: $120.000</div>
+    </div>
+    <div class="stat-card">
+      <div class="icon" style="color:var(--lavanda)">&#10003;</div>
+      <div class="value">0</div>
+      <div class="label">Check-ins</div>
+      <div class="sub">Evento no ha iniciado</div>
+    </div>
+    <div class="stat-card">
+      <div class="icon" style="color:var(--melocoton)">&#127991;</div>
+      <div class="value">5</div>
+      <div class="label">Cortesias</div>
+      <div class="sub">3 usadas</div>
+    </div>
+  </div>
+
+  <!-- Ticket breakdown -->
+  <div class="card" style="padding:24px;margin-bottom:16px">
+    <h3 style="margin-bottom:16px">Desglose por tipo</h3>
+    <div style="display:flex;justify-content:space-between;padding:12px 0;border-bottom:1px solid rgba(255,255,255,0.04)">
+      <span>General ($8.000)</span>
+      <span>120 / 150 vendidas</span>
+    </div>
+    <div style="display:flex;justify-content:space-between;padding:12px 0">
+      <span>VIP ($25.000)</span>
+      <span>30 / 50 vendidas</span>
+    </div>
+  </div>
+
+  <div class="card" style="padding:24px">
+    <h3 style="margin-bottom:8px">PIN del Scanner</h3>
+    <p style="font-size:32px;font-weight:700;font-family:monospace;color:var(--lavanda);letter-spacing:8px">4829</p>
+    <p style="color:var(--texto-muted);font-size:13px;margin-top:4px">Comparte este PIN con tu staff para el check-in</p>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════
+     9. SCANNER QR
+     ═══════════════════════════════════════════ -->
+<div class="screen-divider" id="scanner"><h2>Pantalla 9</h2><p>/scan — Scanner QR (PWA)</p></div>
+
+<div class="section" style="max-width:450px;text-align:center">
+  <h1 style="font-size:24px;margin-bottom:4px">Scanner QR</h1>
+  <p style="color:var(--texto-dim);font-size:14px;margin-bottom:24px">Carlos (Staff)</p>
+
+  <div style="margin-bottom:16px"><span class="badge badge-success">12 check-ins realizados</span></div>
+
+  <!-- Scanner viewport -->
+  <div class="scanner-viewport">
+    <div class="scanner-line"></div>
+    <div class="scanner-corners"></div>
+    <p style="color:var(--texto-muted);font-size:14px;z-index:1">Apunta la camara al QR</p>
+  </div>
+
+  <!-- Success result -->
+  <div class="scan-result valid" style="margin-top:24px">
+    <div style="font-size:64px;margin-bottom:12px">&#10003;</div>
+    <p style="font-size:20px;font-weight:700;margin-bottom:8px">Entrada valida — Bienvenido</p>
+    <p style="color:var(--texto-dim)">Maria Gonzalez</p>
+    <p style="color:var(--texto-muted);font-size:14px">General</p>
+    <button class="btn-primary" style="margin-top:16px">&#8635; Escanear otra entrada</button>
+  </div>
+
+  <!-- Already used result -->
+  <div class="scan-result used" style="margin-top:16px">
+    <div style="font-size:64px;margin-bottom:12px">&#9888;</div>
+    <p style="font-size:20px;font-weight:700;color:#F87171;margin-bottom:8px">Esta entrada ya fue utilizada</p>
+    <p style="color:var(--texto-muted);font-size:13px">Usado: 5 Abr 2026, 21:34</p>
+    <button class="btn-primary" style="margin-top:16px">&#8635; Escanear otra entrada</button>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════
+     10. CONFIRMACION
+     ═══════════════════════════════════════════ -->
+<div class="screen-divider" id="confirmacion"><h2>Pantalla 10</h2><p>/confirmacion/[id] — Post-compra</p></div>
+
+<div class="section" style="max-width:500px;text-align:center">
+  <div style="font-size:80px;color:var(--success);margin-bottom:16px">&#10003;</div>
+  <h1 style="font-size:28px;margin-bottom:8px">Compra confirmada</h1>
+  <p style="color:var(--texto-dim);font-size:16px;margin-bottom:32px">Tus entradas han sido enviadas a tu email. Presenta el codigo QR en la entrada del evento.</p>
+
+  <!-- QR Card -->
+  <div class="qr-card" style="margin-bottom:16px">
+    <div class="qr-placeholder">
+      <div class="qr-grid">
+        <span class="qr-dark"></span><span class="qr-dark"></span><span class="qr-dark"></span><span class="qr-light"></span><span class="qr-dark"></span><span class="qr-dark"></span><span class="qr-dark"></span><span class="qr-light"></span>
+        <span class="qr-dark"></span><span class="qr-light"></span><span class="qr-dark"></span><span class="qr-dark"></span><span class="qr-light"></span><span class="qr-dark"></span><span class="qr-light"></span><span class="qr-dark"></span>
+        <span class="qr-dark"></span><span class="qr-dark"></span><span class="qr-dark"></span><span class="qr-light"></span><span class="qr-dark"></span><span class="qr-light"></span><span class="qr-dark"></span><span class="qr-dark"></span>
+        <span class="qr-light"></span><span class="qr-dark"></span><span class="qr-light"></span><span class="qr-dark"></span><span class="qr-dark"></span><span class="qr-light"></span><span class="qr-dark"></span><span class="qr-light"></span>
+        <span class="qr-dark"></span><span class="qr-light"></span><span class="qr-dark"></span><span class="qr-light"></span><span class="qr-dark"></span><span class="qr-dark"></span><span class="qr-light"></span><span class="qr-dark"></span>
+        <span class="qr-dark"></span><span class="qr-dark"></span><span class="qr-light"></span><span class="qr-dark"></span><span class="qr-light"></span><span class="qr-dark"></span><span class="qr-dark"></span><span class="qr-dark"></span>
+        <span class="qr-light"></span><span class="qr-dark"></span><span class="qr-dark"></span><span class="qr-light"></span><span class="qr-dark"></span><span class="qr-light"></span><span class="qr-dark"></span><span class="qr-light"></span>
+        <span class="qr-dark"></span><span class="qr-dark"></span><span class="qr-dark"></span><span class="qr-dark"></span><span class="qr-light"></span><span class="qr-dark"></span><span class="qr-dark"></span><span class="qr-dark"></span>
+      </div>
+    </div>
+    <h3 style="margin-bottom:4px">Mulata Social Dance</h3>
+    <p style="color:var(--texto-dim);font-size:14px">General</p>
+    <p style="color:var(--texto-dim);font-size:14px">Juan Perez</p>
+    <div style="margin:12px 0"><span class="badge badge-success">Confirmada</span></div>
+    <p style="color:var(--texto-muted);font-size:12px;font-family:monospace">TQ-A3F8B-7C2D9E1</p>
+  </div>
+
+  <div style="display:flex;gap:12px;justify-content:center">
+    <button class="btn-secondary">Volver al inicio</button>
+    <button class="btn-primary">Mis entradas</button>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════
+     11. MIS TICKETS
+     ═══════════════════════════════════════════ -->
+<div class="screen-divider" id="mis-tickets"><h2>Pantalla 11</h2><p>/mis-tickets — Magic link</p></div>
+
+<div class="section" style="max-width:500px">
+  <h1 style="font-size:28px;margin-bottom:24px">Mis entradas</h1>
+
+  <div class="card" style="padding:32px;text-align:center;margin-bottom:24px">
+    <div style="font-size:40px;color:var(--mandarina);margin-bottom:12px">&#9993;</div>
+    <p style="color:var(--texto-dim);margin-bottom:16px">Ingresa tu email para recibir un enlace de acceso a tus entradas</p>
+    <div style="display:flex;gap:8px">
+      <input class="input" placeholder="tu@email.com" style="flex:1">
+      <button class="btn-primary">Enviar</button>
+    </div>
+  </div>
+
+  <!-- Tickets (shown after magic link) -->
+  <div class="qr-card" style="margin-bottom:12px">
+    <div class="qr-placeholder" style="width:160px;height:160px">
+      <div class="qr-grid" style="width:130px;height:130px">
+        <span class="qr-dark"></span><span class="qr-light"></span><span class="qr-dark"></span><span class="qr-dark"></span><span class="qr-light"></span><span class="qr-dark"></span><span class="qr-dark"></span><span class="qr-light"></span>
+        <span class="qr-dark"></span><span class="qr-dark"></span><span class="qr-light"></span><span class="qr-dark"></span><span class="qr-dark"></span><span class="qr-light"></span><span class="qr-dark"></span><span class="qr-dark"></span>
+        <span class="qr-light"></span><span class="qr-dark"></span><span class="qr-dark"></span><span class="qr-light"></span><span class="qr-dark"></span><span class="qr-dark"></span><span class="qr-light"></span><span class="qr-dark"></span>
+        <span class="qr-dark"></span><span class="qr-light"></span><span class="qr-dark"></span><span class="qr-dark"></span><span class="qr-light"></span><span class="qr-dark"></span><span class="qr-dark"></span><span class="qr-light"></span>
+        <span class="qr-dark"></span><span class="qr-dark"></span><span class="qr-light"></span><span class="qr-dark"></span><span class="qr-dark"></span><span class="qr-light"></span><span class="qr-dark"></span><span class="qr-dark"></span>
+        <span class="qr-light"></span><span class="qr-dark"></span><span class="qr-dark"></span><span class="qr-light"></span><span class="qr-dark"></span><span class="qr-dark"></span><span class="qr-light"></span><span class="qr-dark"></span>
+        <span class="qr-dark"></span><span class="qr-light"></span><span class="qr-dark"></span><span class="qr-dark"></span><span class="qr-light"></span><span class="qr-dark"></span><span class="qr-dark"></span><span class="qr-light"></span>
+        <span class="qr-dark"></span><span class="qr-dark"></span><span class="qr-dark"></span><span class="qr-light"></span><span class="qr-dark"></span><span class="qr-light"></span><span class="qr-dark"></span><span class="qr-dark"></span>
+      </div>
+    </div>
+    <h3 style="font-size:16px">Mulata Social Dance</h3>
+    <p style="color:var(--texto-dim);font-size:13px">General — Juan Perez</p>
+    <span class="badge badge-success" style="margin-top:8px">Confirmada</span>
+  </div>
+
+  <div class="qr-card">
+    <div class="qr-placeholder" style="width:160px;height:160px">
+      <div class="qr-grid" style="width:130px;height:130px">
+        <span class="qr-light"></span><span class="qr-dark"></span><span class="qr-dark"></span><span class="qr-light"></span><span class="qr-dark"></span><span class="qr-light"></span><span class="qr-dark"></span><span class="qr-dark"></span>
+        <span class="qr-dark"></span><span class="qr-light"></span><span class="qr-dark"></span><span class="qr-dark"></span><span class="qr-light"></span><span class="qr-dark"></span><span class="qr-light"></span><span class="qr-dark"></span>
+        <span class="qr-dark"></span><span class="qr-dark"></span><span class="qr-light"></span><span class="qr-dark"></span><span class="qr-dark"></span><span class="qr-light"></span><span class="qr-dark"></span><span class="qr-light"></span>
+        <span class="qr-light"></span><span class="qr-dark"></span><span class="qr-dark"></span><span class="qr-light"></span><span class="qr-dark"></span><span class="qr-dark"></span><span class="qr-light"></span><span class="qr-dark"></span>
+        <span class="qr-dark"></span><span class="qr-dark"></span><span class="qr-light"></span><span class="qr-dark"></span><span class="qr-light"></span><span class="qr-dark"></span><span class="qr-dark"></span><span class="qr-dark"></span>
+        <span class="qr-dark"></span><span class="qr-light"></span><span class="qr-dark"></span><span class="qr-dark"></span><span class="qr-dark"></span><span class="qr-light"></span><span class="qr-dark"></span><span class="qr-light"></span>
+        <span class="qr-light"></span><span class="qr-dark"></span><span class="qr-light"></span><span class="qr-dark"></span><span class="qr-dark"></span><span class="qr-dark"></span><span class="qr-light"></span><span class="qr-dark"></span>
+        <span class="qr-dark"></span><span class="qr-dark"></span><span class="qr-dark"></span><span class="qr-light"></span><span class="qr-dark"></span><span class="qr-dark"></span><span class="qr-dark"></span><span class="qr-light"></span>
+      </div>
+    </div>
+    <h3 style="font-size:16px">Mulata Social Dance</h3>
+    <p style="color:var(--texto-dim);font-size:13px">General — Ana Lopez</p>
+    <span class="badge badge-success" style="margin-top:8px">Confirmada</span>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════
+     12. ADMIN DASHBOARD
+     ═══════════════════════════════════════════ -->
+<div class="screen-divider" id="admin"><h2>Pantalla 12</h2><p>/admin — Dashboard admin</p></div>
+
+<div class="section">
+  <h1 style="font-size:32px;margin-bottom:32px">Admin</h1>
+
+  <div class="panel-grid" style="margin-bottom:32px">
+    <div class="stat-card">
+      <div class="icon" style="color:var(--mandarina)">&#128197;</div>
+      <div class="value">24</div>
+      <div class="label">Eventos</div>
+      <div class="sub">18 publicados</div>
+    </div>
+    <div class="stat-card">
+      <div class="icon" style="color:var(--lavanda)">&#128101;</div>
+      <div class="value">12</div>
+      <div class="label">Organizadores</div>
+      <div class="sub">9 activos</div>
+    </div>
+    <div class="stat-card">
+      <div class="icon" style="color:var(--success)">$</div>
+      <div class="value">$8.450.000</div>
+      <div class="label">Ingresos brutos</div>
+      <div class="sub">Comision: $845.000</div>
+    </div>
+    <div class="stat-card">
+      <div class="icon" style="color:var(--melocoton)">&#127915;</div>
+      <div class="value">1.230</div>
+      <div class="label">Tickets emitidos</div>
+      <div class="sub">87 pagos</div>
+    </div>
+  </div>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+    <div class="card" style="padding:24px;cursor:pointer">
+      <h3 style="margin-bottom:4px">Gestionar organizadores</h3>
+      <p style="color:var(--texto-dim);font-size:14px">Aprobar, suspender y ver organizadores</p>
+    </div>
+    <div class="card" style="padding:24px;cursor:pointer">
+      <h3 style="margin-bottom:4px">Metricas detalladas</h3>
+      <p style="color:var(--texto-dim);font-size:14px">Ingresos, ventas y analytics</p>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════
+     13. ADMIN ORGANIZADORES
+     ═══════════════════════════════════════════ -->
+<div class="screen-divider" id="organizadores"><h2>Pantalla 13</h2><p>/admin/organizadores — Gestion</p></div>
+
+<div class="section">
+  <h1 style="font-size:32px;margin-bottom:32px">Organizadores</h1>
+
+  <div class="card" style="overflow:hidden">
+    <table class="admin-table">
+      <thead>
+        <tr><th>Nombre</th><th>Email</th><th>Telefono</th><th>Estado</th><th>Acciones</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="font-weight:600">Mulata Producciones</td>
+          <td style="color:var(--texto-dim)">contacto@mulata.cl</td>
+          <td style="color:var(--texto-dim)">+56 9 8765 4321</td>
+          <td><span class="badge badge-success">activo</span></td>
+          <td><button class="action-btn action-reject" title="Suspender">&#10005;</button></td>
+        </tr>
+        <tr>
+          <td style="font-weight:600">Eventos Sur SpA</td>
+          <td style="color:var(--texto-dim)">admin@eventossur.cl</td>
+          <td style="color:var(--texto-dim)">+56 9 1234 5678</td>
+          <td><span class="badge badge-warning">pendiente</span></td>
+          <td>
+            <button class="action-btn action-approve" title="Aprobar">&#10003;</button>
+            <button class="action-btn action-reject" title="Rechazar">&#10005;</button>
+          </td>
+        </tr>
+        <tr>
+          <td style="font-weight:600">DJ Martinez</td>
+          <td style="color:var(--texto-dim)">dj@martinez.cl</td>
+          <td style="color:var(--texto-dim)">+56 9 5555 1234</td>
+          <td><span class="badge badge-success">activo</span></td>
+          <td><button class="action-btn action-reject" title="Suspender">&#10005;</button></td>
+        </tr>
+        <tr>
+          <td style="font-weight:600">Fiesta Libre</td>
+          <td style="color:var(--texto-dim)">hola@fiestalibre.cl</td>
+          <td style="color:var(--texto-dim)">+56 9 9999 0000</td>
+          <td><span class="badge badge-error">suspendido</span></td>
+          <td><button class="action-btn action-approve" title="Reactivar">&#10003;</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div style="height:100px"></div>
+
+<!-- ═══ Nav scroll highlight ═══ -->
+<script>
+document.querySelectorAll('.screen-nav a').forEach(a => {
+  a.addEventListener('click', () => {
+    document.querySelectorAll('.screen-nav a').forEach(x => x.classList.remove('active'));
+    a.classList.add('active');
+  });
+});
+
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const id = entry.target.id;
+      document.querySelectorAll('.screen-nav a').forEach(a => {
+        a.classList.toggle('active', a.getAttribute('href') === '#' + id);
+      });
+    }
+  });
+}, { threshold: 0.3 });
+
+document.querySelectorAll('[id]').forEach(el => {
+  if (el.id && document.querySelector(`.screen-nav a[href="#${el.id}"]`)) {
+    observer.observe(el);
+  }
+});
+</script>
+
+</body>
+</html>
